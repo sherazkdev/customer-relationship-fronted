@@ -22,7 +22,7 @@ export const setAuthToken = (token) => {
 export const login = async (credentials) => {
   console.log(credentials);
   try {
-    const response = await api.post('/auth/login', payload);
+    const response = await api.post('/auth/login', credentials);
     console.log(response)
     return response.data;
   } catch(e) {
