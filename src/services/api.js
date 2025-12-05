@@ -20,8 +20,8 @@ export const setAuthToken = (token) => {
 
 // Auth APIs
 export const login = async (credentials) => {
+  console.log(credentials);
   try {
-    
     const response = await axios.post(`${API_BASE_URL}/api/auth/login`);
     console.log(response)
     return response.data;
