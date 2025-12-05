@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Phone, MessageSquare, Clock, Plus, Loader2, X } from 'lucide-react';
 import { getCalls, addCall } from '../services/api';
 import { useApp } from '../context/AppContext';
@@ -15,7 +15,8 @@ const CallPanel = ({ customerId, onClose }) => {
     message: ''
   });
 
-  const fetchCalls = async () => {
+  const fetchCalls = useCallback(async () => {
+    if (!customerId) return;
     setLoading(true);
     try {
       const data = await getCalls(customerId);
@@ -26,13 +27,11 @@ const CallPanel = ({ customerId, onClose }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [customerId]);
   
   useEffect(() => {
-    if (customerId) {
-      fetchCalls();
-    }
-  }, [customerId]);
+    fetchCalls();
+  }, [fetchCalls]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +50,7 @@ const CallPanel = ({ customerId, onClose }) => {
       });
       
       setCalls(prev => [newCall, ...prev]);
-      setFormData({ status: 'no-response', message: '' });
+      setFormData({ status: 'noresponse', message: '' });
       toast.success('Call added successfully!');
       
       // Refresh customer list to update status
