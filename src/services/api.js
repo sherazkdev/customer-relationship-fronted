@@ -22,7 +22,7 @@ export const setAuthToken = (token) => {
 export const login = async (credentials) => {
   try {
     
-    const response = await api.post('/auth/login', credentials);
+    const response = await axios.post(`${API_BASE_URL}/api/v1/auth/login`);
     console.log(response)
     return response.data;
   } catch(e) {
