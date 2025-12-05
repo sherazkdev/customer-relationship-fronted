@@ -3,7 +3,6 @@ import { Lock, Mail, LogIn } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { Navigate, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 const Login = () => {
   const { login, user, loading } = useAuth();

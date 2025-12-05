@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { getCustomers, addCustomer } from '../services/api';
 import toast from 'react-hot-toast';
 import { useAuth } from './AuthContext';
@@ -19,8 +19,8 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
 
-  // Fetch all customers
-  const fetchCustomers = async () => {
+  // Fetch all customers (stable reference using useCallback)
+  const fetchCustomers = useCallback(async () => {
     if (!token) return;
     setLoading(true);
     try {
@@ -32,7 +32,7 @@ export const AppProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   // Add new customer
   const createCustomer = async (customerData) => {
@@ -70,7 +70,7 @@ export const AppProvider = ({ children }) => {
     if (!authLoading) {
       fetchCustomers();
     }
-  }, [authLoading]);
+  }, [authLoading, fetchCustomers]);
 
   const value = {
     customers,
@@ -85,4 +85,3 @@ export const AppProvider = ({ children }) => {
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-

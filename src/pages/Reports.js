@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BarChart3, Users, Phone, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { BarChart3, Users, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const Reports = () => {

@@ -15,12 +15,6 @@ const CallPanel = ({ customerId, onClose }) => {
     message: ''
   });
 
-  useEffect(() => {
-    if (customerId) {
-      fetchCalls();
-    }
-  }, [customerId]);
-
   const fetchCalls = async () => {
     setLoading(true);
     try {
@@ -33,6 +27,12 @@ const CallPanel = ({ customerId, onClose }) => {
       setLoading(false);
     }
   };
+  
+  useEffect(() => {
+    if (customerId) {
+      fetchCalls();
+    }
+  }, [customerId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

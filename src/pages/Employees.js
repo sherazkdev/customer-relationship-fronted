@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Users, UserPlus, Mail, Shield, Loader2 } from 'lucide-react';
+import { Users, UserPlus, Mail, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { addEmployee, getEmployees } from '../services/api';
 import Loader from '../components/Loader';
