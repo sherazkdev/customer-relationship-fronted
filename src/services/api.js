@@ -20,9 +20,14 @@ export const setAuthToken = (token) => {
 
 // Auth APIs
 export const login = async (credentials) => {
-  const response = await api.post('/auth/login', credentials);
-  console.log(response)
-  return response.data;
+  try {
+    
+    const response = await api.post('/auth/login', credentials);
+    console.log(response)
+    return response.data;
+  } catch(e) {
+    console.log(e);
+  }
 };
 
 export const getMe = async () => {
