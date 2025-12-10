@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.VITE_SERVER_URL;
+const API_BASE_URL = process.env.VITE_SERVER_URL || "https://customer-relationship-backend.vercel.app/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -20,7 +20,6 @@ export const setAuthToken = (token) => {
 // Auth APIs
 export const login = async (credentials) => {
   const response = await api.post('/auth/login', credentials);
-  console.log(response)
   return response.data;
 };
 

@@ -10,8 +10,8 @@ const CustomerForm = () => {
     name: '',
     phone: '',
     email: '',
-    visitTime: '',
-    note: ''
+    note: '',
+    visitTime: new Date().toISOString().slice(0, 16)
   });
   const [errors, setErrors] = useState({});
 
@@ -41,10 +41,11 @@ const CustomerForm = () => {
       newErrors.phone = 'Phone number is required';
     }
     
-    if (!formData.visitTime.trim()) {
+    if (!formData.visitTime) {
       newErrors.visitTime = 'Visit date and time is required';
     }
     
+    // Email is optional, but if provided, it must be valid
     if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
@@ -67,8 +68,8 @@ const CustomerForm = () => {
         name: '',
         phone: '',
         email: '',
-        visitTime: '',
-        note: ''
+        note: '',
+        visitTime: new Date().toISOString().slice(0, 16)
       });
       setErrors({});
       navigate('/customers');
@@ -161,7 +162,6 @@ const CustomerForm = () => {
               className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                 errors.visitTime ? 'border-red-300' : 'border-gray-300'
               }`}
-              required
             />
             {errors.visitTime && (
               <p className="mt-1 text-sm text-red-600">{errors.visitTime}</p>
