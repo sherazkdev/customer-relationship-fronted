@@ -79,16 +79,21 @@ const CustomerForm = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-      <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-        <UserPlus className="w-5 h-5 mr-2 text-blue-600" />
-        Add New Customer Visit
-      </h2>
+    <div className="bg-white rounded-2xl shadow-lg border border-slate-200/80 p-8 mb-8">
+      <div className="flex items-center space-x-3 mb-6">
+        <div className="p-3 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-lg">
+          <UserPlus className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900">Add New Customer Visit</h2>
+          <p className="text-slate-600 text-sm mt-1">Fill in the customer information below</p>
+        </div>
+      </div>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
               Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -97,8 +102,8 @@ const CustomerForm = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.name ? 'border-red-300' : 'border-gray-300'
+              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                errors.name ? 'border-red-300 bg-red-50' : 'border-slate-300 bg-white hover:border-slate-400'
               }`}
               placeholder="Enter customer name"
             />
@@ -108,7 +113,7 @@ const CustomerForm = () => {
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
               Phone <span className="text-red-500">*</span>
             </label>
             <input
@@ -117,8 +122,8 @@ const CustomerForm = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.phone ? 'border-red-300' : 'border-gray-300'
+              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                errors.phone ? 'border-red-300 bg-red-50' : 'border-slate-300 bg-white hover:border-slate-400'
               }`}
               placeholder="Enter phone number"
             />
@@ -130,7 +135,7 @@ const CustomerForm = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
               Email (Optional)
             </label>
             <input
@@ -139,8 +144,8 @@ const CustomerForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.email ? 'border-red-300' : 'border-gray-300'
+              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                errors.email ? 'border-red-300 bg-red-50' : 'border-slate-300 bg-white hover:border-slate-400'
               }`}
               placeholder="Enter email address"
             />
@@ -150,7 +155,7 @@ const CustomerForm = () => {
           </div>
 
           <div>
-            <label htmlFor="visitTime" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="visitTime" className="block text-sm font-semibold text-slate-700 mb-2">
               Visit Date & Time <span className="text-red-500">*</span>
             </label>
             <input
@@ -159,8 +164,8 @@ const CustomerForm = () => {
               name="visitTime"
               value={formData.visitTime}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.visitTime ? 'border-red-300' : 'border-gray-300'
+              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                errors.visitTime ? 'border-red-300 bg-red-50' : 'border-slate-300 bg-white hover:border-slate-400'
               }`}
             />
             {errors.visitTime && (
@@ -170,7 +175,7 @@ const CustomerForm = () => {
         </div>
 
         <div>
-          <label htmlFor="note" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="note" className="block text-sm font-semibold text-slate-700 mb-2">
             Note (Optional)
           </label>
           <textarea
@@ -178,8 +183,8 @@ const CustomerForm = () => {
             name="note"
             value={formData.note}
             onChange={handleChange}
-            rows={3}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            rows={4}
+            className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white hover:border-slate-400 resize-none"
             placeholder="Add any additional notes..."
           />
         </div>
@@ -187,7 +192,7 @@ const CustomerForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 transition-colors"
+          className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
         >
           {loading ? (
             <>

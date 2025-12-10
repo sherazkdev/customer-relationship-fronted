@@ -5,20 +5,24 @@ import CustomerList from '../components/CustomerList';
 
 const Customers = () => {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-            <Users className="w-6 h-6 mr-2 text-blue-600" />
-            Customers
-          </h1>
-          <p className="text-gray-600 mt-1">Manage customer visits and calls</p>
+          <div className="flex items-center space-x-3 mb-2">
+            <div className="p-3 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg shadow-blue-500/30">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-slate-900">Customers</h1>
+              <p className="text-slate-600 mt-1">Manage customer visits and calls</p>
+            </div>
+          </div>
         </div>
         <Link
           to="/customers/new"
-          className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+          className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
         >
-          <UserPlus className="w-4 h-4" />
+          <UserPlus className="w-5 h-5" />
           <span>Add Customer</span>
         </Link>
       </div>

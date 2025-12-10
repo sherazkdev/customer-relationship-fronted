@@ -77,16 +77,21 @@ const CallPanel = ({ customerId, onClose }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-4 animate-slide-up">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-          <Phone className="w-5 h-5 mr-2 text-blue-600" />
-          Call History
-        </h3>
+    <div className="bg-white rounded-2xl shadow-lg border border-slate-200/80 p-8 mt-6">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-lg">
+            <Phone className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900">Call History</h3>
+            <p className="text-slate-600 text-sm mt-1">Track and manage customer calls</p>
+          </div>
+        </div>
         {onClose && (
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -94,10 +99,10 @@ const CallPanel = ({ customerId, onClose }) => {
       </div>
 
       {/* Add Call Form */}
-      <form onSubmit={handleSubmit} className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <form onSubmit={handleSubmit} className="mb-8 p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl border border-slate-200/80">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div>
-            <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="status" className="block text-sm font-semibold text-slate-700 mb-2">
               Status <span className="text-red-500">*</span>
             </label>
             <select
@@ -105,7 +110,7 @@ const CallPanel = ({ customerId, onClose }) => {
               name="status"
               value={formData.status}
               onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-slate-400"
             >
               <option value="noresponse">No Response</option>
               <option value="cancelled">Cancelled</option>
@@ -113,7 +118,7 @@ const CallPanel = ({ customerId, onClose }) => {
             </select>
           </div>
           <div>
-            <label htmlFor="callTime" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="callTime" className="block text-sm font-semibold text-slate-700 mb-2">
               Call Date & Time <span className="text-red-500">*</span>
             </label>
             <input
@@ -122,11 +127,11 @@ const CallPanel = ({ customerId, onClose }) => {
               name="callTime"
               value={formData.callTime}
               onChange={(e) => setFormData(prev => ({ ...prev, callTime: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-slate-400"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-2">
               Message <span className="text-red-500">*</span>
             </label>
             <input
@@ -135,7 +140,7 @@ const CallPanel = ({ customerId, onClose }) => {
               name="message"
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-slate-400"
               placeholder="Enter call message..."
             />
           </div>
@@ -143,7 +148,7 @@ const CallPanel = ({ customerId, onClose }) => {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 transition-colors"
+          className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
         >
           {submitting ? (
             <>
@@ -174,18 +179,18 @@ const CallPanel = ({ customerId, onClose }) => {
           calls.map((call) => (
             <div
               key={call._id}
-              className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
+              className="p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl border border-slate-200/80 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
             >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center space-x-2">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center space-x-3">
                   <StatusBadge status={call.status} />
                 </div>
-                <div className="flex items-center space-x-1 text-sm text-gray-500">
+                <div className="flex items-center space-x-2 text-sm text-slate-600 font-medium">
                   <Clock className="w-4 h-4" />
                   <span>{formatDate(call.callTime)}</span>
                 </div>
               </div>
-              <p className="text-sm text-gray-700 mt-2">{call.message}</p>
+              <p className="text-slate-700 leading-relaxed">{call.message}</p>
             </div>
           ))
         )}

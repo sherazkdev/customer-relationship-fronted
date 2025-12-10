@@ -51,62 +51,68 @@ const CustomerDetail = () => {
   if (!customer) return null;
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center space-x-3">
           <button
             onClick={() => navigate(-1)}
-            className="p-2 rounded-lg border border-gray-200 hover:bg-gray-50"
+            className="p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-5 h-5 text-slate-600" />
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{customer.name}</h1>
-            <p className="text-gray-600">Customer Detail</p>
+            <h1 className="text-3xl font-bold text-slate-900">{customer.name}</h1>
+            <p className="text-slate-600 mt-1">Customer Detail</p>
           </div>
         </div>
         <StatusBadge status={customer.status} />
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex items-center space-x-3">
-            <User className="w-5 h-5 text-gray-400" />
+      <div className="bg-white rounded-2xl shadow-lg border border-slate-200/80 p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-50">
+            <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
+              <User className="w-6 h-6 text-white" />
+            </div>
             <div>
-              <p className="text-sm text-gray-500">Name</p>
-              <p className="text-gray-900 font-medium">{customer.name}</p>
+              <p className="text-sm font-medium text-slate-500 mb-1">Name</p>
+              <p className="text-slate-900 font-bold text-lg">{customer.name}</p>
             </div>
           </div>
           {customer.email && (
-            <div className="flex items-center space-x-3">
-              <Mail className="w-5 h-5 text-gray-400" />
-              <div className="flex-1">
-                <p className="text-sm text-gray-500">Email</p>
+            <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-50">
+              <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-slate-500 mb-1">Email</p>
                 <a
                   href={`mailto:${customer.email}`}
-                  className="text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors inline-flex items-center space-x-2"
+                  className="text-blue-600 hover:text-blue-700 hover:underline font-bold text-lg transition-colors inline-flex items-center space-x-2 truncate"
                 >
-                  <span>{customer.email}</span>
-                  <Mail className="w-4 h-4" />
+                  <span className="truncate">{customer.email}</span>
+                  <Mail className="w-4 h-4 flex-shrink-0" />
                 </a>
               </div>
             </div>
           )}
-          <div className="flex items-center space-x-3">
-            <Phone className="w-5 h-5 text-gray-400" />
-            <div className="flex-1">
-              <p className="text-sm text-gray-500">Phone</p>
+          <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-50">
+            <div className="p-3 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl">
+              <Phone className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-slate-500 mb-1">Phone</p>
               <div className="flex items-center space-x-3">
                 <a
                   href={`tel:${customer.phone}`}
-                  className="text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors inline-flex items-center space-x-2"
+                  className="text-slate-900 hover:text-blue-600 hover:underline font-bold text-lg transition-colors inline-flex items-center space-x-2"
                 >
                   <span>{customer.phone}</span>
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-4 h-4 flex-shrink-0" />
                 </a>
                 <a
                   href={`sms:${customer.phone}`}
-                  className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                  className="p-2.5 rounded-xl text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-all flex-shrink-0"
                   title="Send SMS"
                 >
                   <MessageSquare className="w-5 h-5" />
@@ -114,20 +120,24 @@ const CustomerDetail = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-3">
-            <Calendar className="w-5 h-5 text-gray-400" />
+          <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-50">
+            <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl">
+              <Calendar className="w-6 h-6 text-white" />
+            </div>
             <div>
-              <p className="text-sm text-gray-500">Visit Time</p>
-              <p className="text-gray-900 font-medium">{formatDate(customer.visitTime)}</p>
+              <p className="text-sm font-medium text-slate-500 mb-1">Visit Time</p>
+              <p className="text-slate-900 font-bold text-lg">{formatDate(customer.visitTime)}</p>
             </div>
           </div>
         </div>
         {customer.note && (
-          <div className="mt-4 flex items-start space-x-3">
-            <FileText className="w-5 h-5 text-gray-400" />
-            <div>
-              <p className="text-sm text-gray-500">Notes</p>
-              <p className="text-gray-900">{customer.note}</p>
+          <div className="mt-6 pt-6 border-t border-slate-200 flex items-start space-x-4">
+            <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-slate-500 mb-2">Notes</p>
+              <p className="text-slate-900 leading-relaxed">{customer.note}</p>
             </div>
           </div>
         )}
