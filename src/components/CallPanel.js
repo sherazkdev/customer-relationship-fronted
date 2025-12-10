@@ -12,7 +12,8 @@ const CallPanel = ({ customerId, onClose }) => {
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     status: 'noresponse',
-    message: ''
+    message: '',
+    callTime: new Date().toISOString().slice(0, 16)
   });
 
   const fetchCalls = useCallback(async () => {
@@ -46,11 +47,12 @@ const CallPanel = ({ customerId, onClose }) => {
       const newCall = await addCall({
         customerId,
         status: formData.status,
-        message: formData.message
+        message: formData.message,
+        callTime: formData.callTime
       });
       
       setCalls(prev => [newCall, ...prev]);
-      setFormData({ status: 'noresponse', message: '' });
+      setFormData({ status: 'noresponse', message: '', callTime: new Date().toISOString().slice(0, 16) });
       toast.success('Call added successfully!');
       
       // Refresh customer list to update status
@@ -110,7 +112,20 @@ const CallPanel = ({ customerId, onClose }) => {
               <option value="buyed">Buyed</option>
             </select>
           </div>
-          <div className="md:col-span-2">
+          <div>
+            <label htmlFor="callTime" className="block text-sm font-medium text-gray-700 mb-1">
+              Call Date & Time <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="datetime-local"
+              id="callTime"
+              name="callTime"
+              value={formData.callTime}
+              onChange={(e) => setFormData(prev => ({ ...prev, callTime: e.target.value }))}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div>
             <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
               Message <span className="text-red-500">*</span>
             </label>

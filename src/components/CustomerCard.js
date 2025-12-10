@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Calendar, User, Eye, Phone } from 'lucide-react';
+import { Mail, Calendar, User, Eye, Phone, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StatusBadge from './StatusBadge';
 
@@ -36,13 +36,37 @@ const CustomerCard = ({ customer }) => {
         </div>
 
         <div className="space-y-2 text-sm text-gray-600">
-          <div className="flex items-center space-x-2">
-            <Mail className="w-4 h-4 text-gray-400" />
-            <span>{customer.email}</span>
-          </div>
+          {customer.email && (
+            <div className="flex items-center space-x-2">
+              <Mail className="w-4 h-4 text-gray-400" />
+              <a
+                href={`mailto:${customer.email}`}
+                className="text-blue-600 hover:text-blue-800 hover:underline flex items-center space-x-1 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span>{customer.email}</span>
+              </a>
+            </div>
+          )}
           <div className="flex items-center space-x-2">
             <Phone className="w-4 h-4 text-gray-400" />
-            <span>{customer.phone}</span>
+            <div className="flex items-center space-x-2">
+              <a
+                href={`tel:${customer.phone}`}
+                className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {customer.phone}
+              </a>
+              <a
+                href={`sms:${customer.phone}`}
+                className="p-1.5 rounded-lg text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                title="Send SMS"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <MessageSquare className="w-4 h-4" />
+              </a>
+            </div>
           </div>
           <div className="flex items-center space-x-2">
             <Calendar className="w-4 h-4 text-gray-400" />
